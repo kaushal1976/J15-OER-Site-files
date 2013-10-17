@@ -26,7 +26,8 @@
   <folder>controllers</folder>
   <folder>assets</folder>
   <folder>helpers</folder>
-  <folder>uplaod</folder>
+  <folder>upload</folder>
+  <folder>views</folder>
  </files>
  
  <install>
