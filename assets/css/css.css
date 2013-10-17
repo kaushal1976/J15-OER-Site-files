@@ -1,0 +1,303 @@
+/**
+ * @version		1.5.0 OER $
+ * @package		oer
+ * @copyright	Copyright © 2013 - All rights reserved.
+ * @license		GNU/GPL
+ * @author		Dr Kaushal Keraminiyage
+ * @author mail	admin@confmgt.com
+ * @website		www.confmgt.com
+ *
+ */
+/* Buttons */
+ 
+button.rollselect {
+	width:70px;
+	cursor:pointer;
+	margin:2px;
+  	padding:3px;
+	height:95px;
+	font-size:11px;
+	
+}
+
+
+.btnFloatLeft {
+	float:left;
+	margin-left:3px;
+	margin-right:3px;
+	margin-top:1px;
+	margin-bottom:1px;
+	font-size:11px;
+}
+	
+
+button.genBtn {
+	display:block;
+	color:#555555;
+	font-weight:bold;
+	height:35px;
+	line-height:29px;
+	margin-bottom:14px;
+	text-decoration:none;
+	font-size:11px;
+	
+}
+select {
+   background: transparent;
+   padding: 5px;
+   border: 1px solid #ccc;
+}
+
+textarea {
+   background: transparent;
+   padding: 5px;
+   border: 1px solid #ccc;
+   margin:2px;
+   width:95%
+
+}
+
+input {	
+	background: transparent;
+   	padding: 5px;
+   	border: 1px solid #ccc;
+   	height: 20px;
+}
+
+button:hover.genBtn {
+color:#0066CC;
+}
+
+button:hover.rollselect {
+color:#0066CC;
+}
+	 
+.button_no_border {
+	margin:2px;
+  	padding:3px;
+	border: 0px;
+}
+
+span.details {
+	background:url(../images/icons/paper_content_pencil_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.list_paper {
+	background:url(../images/icons/paper_content_pencil_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+span.edit {
+	background:url(../images/icons/pencil_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.back {
+	background:url(../images/icons/back_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.new {
+	background:url(../images/icons/add_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.home {
+	background:url(../images/icons/home_16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.delete {
+	background:url(../images/icons/cancel_16.png) no-repeat 5px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.cancel {
+	background:url(../images/icons/cancel_16.png) no-repeat 5px 5px; 
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.user {
+	background:url(../images/icons/user_16.png) no-repeat 5px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.user_list {
+	background:url(../images/icons/users_two_16.png) no-repeat 5px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.mail {
+	background:url(../images/icons/mail_16.png) no-repeat 5px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.upload {
+	background:url(../images/icons/box_upload_16.png) no-repeat 5px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+	
+	
+.button {
+
+ 
+}
+
+.submitLink {
+background-color: transparent;
+color:#666;
+font-weight:bold;
+text-decoration: underline;
+border: none; 
+cursor: pointer;
+cursor: hand;
+}
+
+input:hover.submitLink {
+color:#0066CC;
+}
+
+/* standard list style table 
+table.list {
+	background-color: #FFFFFF;
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	width: 99%;
+	border-collapse: collapse;
+}
+*/
+
+table.list { border:1px solid #AAA;	padding:1px;width:100%; }
+
+
+table.list th { 
+background: none repeat scroll 0 0 #F0F0F0; 
+border: 1px solid #CCCCCC; 
+padding-left:5px; 
+padding-right:5px; 
+border-left: 1px solid #FFFFFF; 
+border-right: 1px solid #D8D8D8;
+}
+
+
+/*
+	margin: 0px;
+	padding: 6px 4px 2px 4px;
+	height: 25px;
+	font-size: 12px;
+	color: #000;
+	border-bottom: 1px solid #666;
+	font-weight:bold;
+	background:#CCC;
+}
+*/
+table.list th.title {
+	text-align: left;
+}
+
+table.list th a:link, table.list th a:visited {
+	color: #c64934;
+	text-decoration: none;
+}
+
+/*
+table.list th a:hover {
+	text-decoration: underline;
+}
+
+*/
+
+table.list tr.row0 {
+	background-color: #F9F9F9;
+	height:30px;
+}
+table.list tr.row1 {
+	background-color: #FFF;
+	height:30px;
+}
+
+
+table.list td {
+	border-bottom: 1px solid #e5e5e5;
+	padding-left:3px;
+	margin:2px;
+}
+
+table.list td.head {
+	font-weight:bold;
+	text-align:right;
+	padding-right:50px;
+}
+
+
+/*
+
+table.list tr.row0:hover {
+	background-color: #f1f1f1;
+}
+table.list tr.row1:hover {
+	background-color: #f1f1f1;
+}
+
+*/
+
+table.list td.options {
+	background-color: #ffffff;
+	font-size: 8px;
+}
+table.list td.bold {
+	font-size:12px;
+	font-weight:bold;
+}
+.error {
+  font-style: italic;
+  padding: 5px;
+  color: #FFFFFF;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.error2 {
+  font-style: italic;
+  padding: 5px;
+  color:#F00;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+div.imgctr
+{
+	margin-right:auto;
+	margin-left:auto;
+
+	
+	
+}
+
+
+
