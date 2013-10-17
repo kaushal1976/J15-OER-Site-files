@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Single OER Layout">
+		<message>
+			<![CDATA[This layout shows a single OER.]]>
+		</message>
+	</layout>
+	<state>
+		<name>OER Layout</name>
+		<description>This layout shows a single OER.</description>
+		<params>
+		</params>
+	</state>
+</metadata>

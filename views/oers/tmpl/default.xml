@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="List of OERs">
+		<message>
+			<![CDATA[This layout shows a list of OERs with a search function.]]>
+		</message>
+	</layout>
+	<state>
+		<name>OERs list</name>
+		<description>This layout shows a list of OERs with a search function.</description>
+		<params>
+		</params>
+	</state>
+</metadata>

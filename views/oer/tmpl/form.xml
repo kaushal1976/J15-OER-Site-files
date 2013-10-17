@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Add / Edit OERs">
+		<message>
+			<![CDATA[This layout shows a form to add / edit OERs.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Add / Edit OERs</name>
+		<description>This layout shows a form to add / edit OERs.</description>
+		<params>
+		</params>
+	</state>
+</metadata>
