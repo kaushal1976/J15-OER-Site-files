@@ -20,6 +20,11 @@ button.rollselect {
 	
 }
 
+a.button {
+	margin:2px;
+	padding::2px;
+}
+
 
 .btnFloatLeft {
 	float:left;
@@ -92,7 +97,14 @@ span.list_paper {
 	height:30px;
 }
 span.edit {
-	background:url(../images/icons/pencil_16.png) no-repeat 1px 5px;
+	background:url(../images/icons/edit-16.png) no-repeat 1px 5px;
+	text-indent:20px;
+	display:block;
+	height:30px;
+}
+
+span.view {
+	background:url(../images/icons/view-16.png) no-repeat 1px 5px;
 	text-indent:20px;
 	display:block;
 	height:30px;

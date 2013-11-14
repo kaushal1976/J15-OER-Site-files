@@ -41,6 +41,7 @@ class oerModelOer extends Jmodel
 		{
 			$mainframe =& JFactory::getApplication();
 			$data = $mainframe->getUserState( "oer.post" );
+			$mainframe->setUserState("oer.post", null);
 			if (empty($data)) 
 			{
 				$this->_data	= null;
@@ -77,7 +78,46 @@ class oerModelOer extends Jmodel
 
 		return $this->_data;
 	}
-
+	
+	function &getDataLanguages()
+	{
+		// Load the OER languages data to build the list
+		$query = 'SELECT a.*' .
+					' FROM #__oer_languages AS a';
+			$this->_db->setQuery($query);
+			$languagelist = $this->_db->loadObjectList();
+			return $languagelist;
+	}
+	
+	
+	
+	function &getDataLicences()
+	{
+		// Load the OER licenses data to build the list
+		$query = 'SELECT a.id AS value, a.name AS text' .
+					' FROM #__oer_licenses AS a';
+			$this->_db->setQuery($query);
+			$licencelist = $this->_db->loadObjectList();
+			return $licencelist;
+	}
+	
+	function &getDataLicence($licence_id=0)
+	{
+		// Load the OER license
+		if(!($out = (JRequest::getVar( 'licence_id', '', 'get', 'cmd' ) ) )){
+			$out = $licence_id;
+		}
+			$query = 'SELECT a.id AS value, a.description AS decs, a.url AS url' .
+					' FROM #__oer_licenses AS a' .
+					' WHERE a.id = '.$out;
+					
+			$this->_db->setQuery($query);
+			$licence = $this->_db->loadObject();
+			return $licence;
+			
+	}
+	
+	
 	
 	function store($data,$table='oer')
 	{
@@ -87,7 +127,9 @@ class oerModelOer extends Jmodel
 		if (!$row->bind($data)) {
 			$this->setError($this->_db->getErrorMsg());
 			return false;
-		}
+		}	
+		
+		
 		if (!$row->store()) {
 			$this->setError($this->_db->getErrorMsg());
 			return false;
@@ -134,6 +176,42 @@ class oerModelOer extends Jmodel
 		}
 		return true;
 	}
+	
+			/**
+	 * Method to retrieve the author
+	 *
+	 * @access	public
+	 * @return	return userid on success
+	 * @since	1.5
+	 */
+	function getAuthor($id)
+	{
+		// Lets load the content if it doesn't already exist
+		if (isset($id) && $id > 0)
+		{
+			$query = 'SELECT cc.*' .
+					' FROM #__oer_oers AS cc' .
+					' WHERE cc.id = '. (int) $id;
+					
+			$this->_db->setQuery($query);
+			$return = $this->_db->loadObject();
+			
+			if (!empty($return)) {
+				
+				return $return->userid;
+				
+			}else{
+				
+				return false;
+			}
+			
+		}else{	
+		
+			return false;
+		}
+		
+		
+	}
 
 	/**
 	 * Method to initialise the OER data
@@ -153,7 +231,15 @@ class oerModelOer extends Jmodel
 			$oer->description			= null;
 			$oer->filedata				= null;
 			$oer->keywords				= null;
+			$oer->authors				= null;
+			$oer->programtag			= null;
+			$oer->projecttag			= null;
+			$oer->licence				= null;
+			$oer->agree					= null;
+			$oer->group					= null;
 			$oer->oertype				= null;
+			$oer->language				= null;
+	
 		
 			$this->_data				= $oer;
 			return (boolean) $this->_data;

@@ -1,31 +1,18 @@
 <?php
-/**
- * @version		1.5.0 OER $
- * @package		oer
- * @copyright	Copyright © 2013 - All rights reserved.
- * @license		GNU/GPL
- * @author		Dr Kaushal Keraminiyage
- * @author mail	admin@confmgt.com
- * @website		www.confmgt.com
- *
- */
+		//$path = "/Applications/XAMPP/xamppfiles/htdocs/j15/components/com_oer/upload/";
+		define('JPATH_BASE', dirname(__FILE__) );
+		define( '_JEXEC', 1 );
+		define( 'DS', '/' );
+		/*
 
-// no direct access
-defined('_JEXEC') or die('Restricted access');
-
-// Component Helper
-
-jimport('joomla.application.component.helper');
-
-class oerHelper
-
-//filters
-{
-	function download()
-	{
-
-	$path = "/Applications/XAMPP/xamppfiles/htdocs/j15/components/com_oer/upload/";
-		//$path=JPATH_SITE.DS.'components'.DS.'com_oer'.DS.'upload'.DS; //To DO set config
+		require_once ( JPATH_BASE .DS . 'configuration.php' );
+		require_once ( JPATH_BASE .DS.'includes'.DS.'defines.php' );
+		require_once ( JPATH_BASE .DS.'includes'.DS.'framework.php' );
+		require_once ( JPATH_BASE .DS.'libraries'.DS.'joomla'.DS.'factory.php' );
+		
+		*/
+				
+		$path=JPATH_BASE.DS.'upload'.DS; //To DO set config
 		$filename=$_GET["file"];
 		$realpath = $path.$filename;
 		$mtime = ($mtime = filemtime($realpath)); //? $mtime : gmtime(); 
@@ -71,6 +58,3 @@ class oerHelper
 		// after the close of the script code would potentially cause 
 		// problems after the file download. 
 		exit;
-	}
-}
-?>

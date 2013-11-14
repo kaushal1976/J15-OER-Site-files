@@ -29,6 +29,11 @@ JHtml::_('behavior.tooltip');
 		<input type="text" size="50" maxlength="250" name="search" id="search" value="<?php echo htmlspecialchars($this->lists['search']);?>" class="inputbox" onchange="document.adminForm.submit();" />
 		<button class="button" onclick="this.form.submit();"><?php echo JText::_( 'Go' ); ?></button>
 		<button class="button" onclick="document.getElementById('search').value='';this.form.submit();"><?php echo JText::_( 'Reset' ); ?></button>
+        <?php
+        $addnew = JRoute::_('index.php?option=com_oer&controller=oer&task=addnew');
+		$addnew = "<a class = 'button' href='".$addnew."'>".JText::_('OER_ADD-NEW');"</a>";
+        echo $addnew;
+		?>
 	</td>
 </tr>
 </table>
@@ -38,7 +43,7 @@ JHtml::_('behavior.tooltip');
     <th><?php echo JText::_('OER_ID'); ?> </td>
     <th><?php echo JText::_('OER_TITLE'); ?></td>
     <th><?php echo JText::_('OER_SUBMITTED_BY'); ?></td>
-    <th><?php echo JText::_('OER_FILE'); ?></td>
+    <th><?php echo JText::_('OER_ACTION'); ?></td>
   </tr>
 			<?php 
 			$class='row0';	
@@ -74,7 +79,18 @@ JHtml::_('behavior.tooltip');
 				   	</td>
                     <td>
 					<?php
-                    echo $oer->filedata; ?>
+					$viewpage = JRoute::_('index.php?option=com_oer&controller=oer&task=viewpage&id='.$oer->id);
+					$viewlink = "<a class = 'button' href='".$viewpage."'>".JText::_('OER_VIEW_PAGE');"</a>";
+                    echo $viewlink;
+                    
+                    if ($submitted_by->id == $this->user->id)
+					{
+						$editpage = JRoute::_('index.php?option=com_oer&controller=oer&task=edit&id='.$oer->id);
+						$editlink = "<a class = 'button' href='".$editpage."'>".JText::_('OER_EDIT_PAGE');"</a>";  
+                    	echo $editlink;
+					}
+					?>
+    
 	                </td>
    					</tr>
 				<?php 

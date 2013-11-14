@@ -1,8 +1,8 @@
 <?php
 /**
- * @version		1.5.0 confmgt $
- * @package		confmgt
- * @copyright	Copyright © 2012 - All rights reserved.
+ * @version		1.5.0 OER $
+ * @package		OER
+ * @copyright	Copyright © 2013 - All rights reserved.
  * @license		GNU/GPL
  * @author		Dr Kaushal Keraminiyage
  * @author mail	admin@confmgt.com
@@ -23,7 +23,26 @@ class oerViewOer extends Jview
 		if($this->getLayout() == 'form') {
 			$this->_displayForm($tpl);
 			return;
+		}else{
+			$mainframe = JFactory::getApplication();
+			$document =& JFactory::getDocument();
+			$params   = &$mainframe->getParams();
+			$model		=& $this->getModel();
+			
+			//get the OER
+			$data	= new stdClass();
+			$data	=& $this->get('data');
+			$licence_description = $model->getDataLicence($data->licence)->decs;
+			$licence_url = $model->getDataLicence($data->licence)->url;
+			$data ->licence_desc = $licence_description. '<br />'.'<a href="'.$licence_url.'">'.$licence_url.'</a>';
+			$lists['file'] = '<a href="components/com_oer/download.php?file='.$data->filedata.'">'.$data->filedata.'</a>';
+			$this->assignRef('params' ,	 $params);
+			$this->assignRef('lists' ,	 $lists);
+			$this->assignRef('data' , $data);
 		}
+			
+			
+			
 
 		parent::display($tpl);
 	}
@@ -41,17 +60,26 @@ class oerViewOer extends Jview
 		$uri     	=& JFactory::getURI();
 		
 
-		// Make sure you are logged in and have the necessary access rights
-		if ($user->get('gid') < 19) {
-			  JResponse::setHeader('HTTP/1.0 403',true);
-              JError::raiseWarning( 403, JText::_('ALERTNOTAUTH') );
-			return;
-		}
-
 		//get the OER
 		$data	= new stdClass();
 		$data	=& $this->get('data');
 		$isNew	= ($data->id < 1);
+		
+		// Make sure you are logged in and have the necessary access rights
+		
+		
+		if (!$isNew)
+		{
+			$author = $model->getAuthor($data->id);
+	
+			if (($author <> $user->id) || $user->guest)			
+			{		
+			JResponse::setHeader('HTTP/1.0 403',true);
+            JError::raiseWarning( 403, JText::_('ALERTNOTAUTH') );
+			return;
+			}
+		}
+
 
 		// Edit or Create?
 		if (!$isNew)
@@ -105,11 +133,47 @@ class oerViewOer extends Jview
 			$pathway->addItem(JText::_('New'), '');
 		}
 
-		JFilterOutput::objectHTMLSafe( $weblink, ENT_QUOTES, 'description' );
-
+		JFilterOutput::objectHTMLSafe( $data, ENT_QUOTES, 'description' );
+		
+		//building the languages list
+		$languages = $model->getdataLanguages();
+		
+		//build the licence list
+		
+		$licences = $model->getdataLicences();
+			
+		if ($data->id > 0)
+		{
+			$selectedlicence =  $data->licence; 
+			$selectedaccept = $data->agree;
+			$selectedlanguage = $data->language;
+			
+		}else{
+			
+			$selectedlicence = null;
+			$selectedaccept = null;
+			$selectedlanguage = null;
+		}
+		
+		$attributes = 'class = "inputbox"';
+		
+		JHTML::_('behavior.formvalidation');
+			
+		$lists['licence'] = JHTML::_('select.genericlist', $licences, 'licence', $attributes, 'value', 'text', $selectedlicence);
+		$lists['language'] = JHTML::_('select.genericlist', $languages, 'language', $attributes, 'text', 'text', $selectedlanguage);
+		$lists['agree'] =  JHTML::_('select.booleanlist', 'agree', 'class = "inputbox"', $selectedaccept);
+		
+		if ($isNew) {
+			$lists['file'] = '<input type="file" id="filedata" name="filedata" />';
+		}else{
+			//$lists['file'] = '<a href="index.php?option=com_oer&controller=file&task=download&file='.$data->filedata.'">'.$data->filedata.'</a>';
+			$lists['file'] = '<a href="components/com_oer/download.php?file='.$data->filedata.'">'.$data->filedata.'</a>';
+		}
+		
 		$this->assignRef('user' , $user);
 		$this->assignRef('data' , $data);
 		$this->assignRef('params' ,	 $params);
+		$this->assignRef('lists' , $lists);
 		parent::display($tpl);
     }
 

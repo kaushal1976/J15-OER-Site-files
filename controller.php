@@ -26,21 +26,13 @@ class oerController extends JController
 	
     function display()
 	{
-
-		$user =& JFactory::getUser();
-		
-		if (!($user->guest)) {
-			if ( ! (JRequest::getCmd( 'view' ) )) {
-				JRequest::setVar('view', 'oers');
-				}
 			
-		} else {
-			
-			$link = JRoute::_('index.php?option=com_user&view=login', false);
-			$msg = JText::_('NEEDS_LOGIN');
-			$this->setredirect($link,$msg); 
+		if ( ! JRequest::getCmd( 'view' ) ) {
+			JRequest::setVar('view', 'oers' );
+			JRequest::setVar('layout', 'listpage' );
 		}
-        parent::display();
+			
+		parent::display();
 
     }
 	

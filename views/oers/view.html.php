@@ -22,7 +22,10 @@ class oerViewOers extends Jview
 		function display($tpl = null)
     {	
 		 $mainframe = &JFactory::getApplication();
+		 $document =& JFactory::getDocument();
+		 $params   = &$mainframe->getParams();
 		 $option = JRequest::getCmd('option');
+		 $user =  JFactory::getUser();
 		 $search = $mainframe->getUserStateFromRequest( $option.'search','search','','string' );
 		if (strpos($search, '"') !== false) 
 		{
@@ -33,11 +36,12 @@ class oerViewOers extends Jview
 		 
 		 
 		 
-		 
 		 // Get data from the model
          $items = $this->get('Items');
          $pagination = $this->get('Pagination');
 		 $data = $this->get('Data');
+		 
+		
  
         // Check for errors.
          if (count($errors = $this->get('Errors'))) 
@@ -49,12 +53,15 @@ class oerViewOers extends Jview
         $this->items = $items;
         $this->pagination = $pagination;
 		$this->data = $data;
+		$this->user = $user;
+		$this->assignRef('lists', $lists);
 		$this->assignRef('lists', $lists);
  
         // Display the template
   	
 		parent::display($tpl);
-	}
+	}	
+ 
 	
 }
 ?>

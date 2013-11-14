@@ -1,30 +1,14 @@
 <?php
-/**
- * @version		1.5.0 OER $
- * @package		oer
- * @copyright	Copyright © 2013 - All rights reserved.
- * @license		GNU/GPL
- * @author		Dr Kaushal Keraminiyage
- * @author mail	admin@confmgt.com
- * @website		www.confmgt.com
- *
- */
-
-// no direct access
 defined('_JEXEC') or die('Restricted access');
 
-// Component Helper
+jimport('joomla.application.component.controller');
 
-jimport('joomla.application.component.helper');
-
-class oerHelper
-
-//filters
+class oerControllerfile extends JController
 {
-	function download()
+	
+	function download() 
 	{
-
-	$path = "/Applications/XAMPP/xamppfiles/htdocs/j15/components/com_oer/upload/";
+		$path = "/Applications/XAMPP/xamppfiles/htdocs/j15/components/com_oer/upload/";
 		//$path=JPATH_SITE.DS.'components'.DS.'com_oer'.DS.'upload'.DS; //To DO set config
 		$filename=$_GET["file"];
 		$realpath = $path.$filename;
@@ -73,4 +57,3 @@ class oerHelper
 		exit;
 	}
 }
-?>

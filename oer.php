@@ -33,6 +33,6 @@ $classname	= 'oerController'.ucfirst($controller);
 $controller = new $classname( );
 
 // Perform the Request task
-$controller->execute(JRequest::getCmd('task', null, 'default', 'cmd'));
+$controller->execute(JRequest::getCmd('task', null, 'default'));
 $controller->redirect();
 ?>
